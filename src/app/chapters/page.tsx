@@ -1,0 +1,110 @@
+import { chapters } from "@/lib/chapters";
+import Link from "next/link";
+import { ChevronLeft } from "lucide-react";
+import { CornerPlusIcons } from "@/components/Decorum";
+import { Metadata } from "next";
+import Script from "next/script";
+import { title, description, keywords, url } from "@/lib/data";
+
+export const metadata: Metadata = {
+    title,
+    description,
+    keywords,
+    robots: { index: true, follow: true },
+    alternates: { canonical: `${url}/chapters` },
+
+    openGraph: {
+        title,
+        description,
+        url: `${url}/chapters`,
+        images: [`${url}/preview.png`],
+    },
+};
+
+export default async function IndexPage() {
+    const schemaData = {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        name: title,
+        url: `${url}/chapters`,
+        description,
+        keywords,
+        image: `${url}/preview.png`,
+        author: {
+            "@type": "Person",
+            name: "Subhajit Gorai",
+            url: `${url}/author`,
+        },
+        breadcrumb: {
+            "@type": "BreadcrumbList",
+            itemListElement: [
+                {
+                    "@type": "ListItem",
+                    position: 1,
+                    name: "Home",
+                    item: `${url}/chapters`,
+                },
+            ],
+        },
+    };
+
+    return (
+        <>
+            <Script
+                id="schema-index"
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
+            />
+
+            <div className="flex md:items-center justify-center size-full h-screen py-4 md:py-0">
+                <section
+                    className="h-full md:h-[80vh] w-[90dvw] max-w-[1368px] bg-[#f8f8f8] dark:bg-neutral-900  text-black dark:text-[#f8f8f8]
+                    border border-neutral-300/80 dark:border-neutral-700/80
+                    p-6 py-10 flex flex-col justify-start items-center relative border-dashed"
+                >
+                    {/* /chapters -> / */}
+                    <nav className="absolute top-0 right-0 px-2 py-2 opacity-50 hover:opacity-100 z-40">
+                        <Link
+                            href="/"
+                            className="flex items-center justify-center gap-0 px-2 py-0.5 rounded-2xl
+                            bg-stone-200 dark:bg-stone-800 border-r border-b border-stone-300 dark:border-stone-700"
+                        >
+                            <ChevronLeft size={20} /> Home
+                        </Link>
+                    </nav>
+
+                    <h1 className="font-serif capitalize text-2xl text-center">
+                        Index
+                    </h1>
+
+                    <ol className="list mt-12 font-mono md:px-10 max-w-[80ch] overflow-y-scroll">
+                        {chapters.map((section, sid) => (
+                            <li
+                                key={sid.toString() + section.title}
+                                className="py-2 border-b border-dashed border-neutral-200"
+                            >
+                                <h3 className="font-bold capitalize">
+                                    {section.title}
+                                </h3>
+                                <ol className="pl-4">
+                                    {section.chapters.map((chapter, cid) => (
+                                        <li key={chapter.slug}>
+                                            <Link
+                                                href={`/chapters/${chapter.slug}`}
+                                                className="capitalize hover:underline font-sans"
+                                            >
+                                                {cid + 1}. {chapter.title}
+                                            </Link>
+                                        </li>
+                                    ))}
+                                </ol>
+                            </li>
+                        ))}
+                    </ol>
+
+                    <CornerPlusIcons />
+                </section>
+            </div>
+        </>
+    );
+}
