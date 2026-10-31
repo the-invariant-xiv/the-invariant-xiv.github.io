@@ -229,7 +229,7 @@ export default async function ArticlePage({
                             href="mailto:the.invariant.mail@gmail.com"
                             className="underline cursor-pointer"
                         >
-                            blog.opencanvas@gmail.com
+                            the.invariant.mail@gmail.com
                         </a>
                         . I&apos;d love to hear your thoughts, and improve it.
                         <br />
