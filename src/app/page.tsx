@@ -7,7 +7,7 @@ export default async function HomePage() {
         <div className="flex md:items-center justify-center size-full h-screen py-4 md:py-0">
             <section
                 className="h-full md:h-[80vh] w-[90dvw] max-w-[1368px] _bg-[#f8f8f8] bg-white dark:bg-neutral-900 text-black dark:text-[#f8f8f8]
-                    border border-dashed border-neutral-300/80 dark:border-neutral-700/80 p-6 py-10
+                    border border-dashed border-neutral-300/80 dark:border-neutral-700/80 px-6 pt-24
                     flex flex-col justify-start items-center relative"
             >
                 <h1 className="md:font-serif capitalize text-3xl text-center mt-20 md:mt-0">
@@ -31,7 +31,7 @@ export default async function HomePage() {
                 </p>
 
                 <div className="diagram front-cover my-10">
-                    <Image src="/f2.png" alt="graph" width={160} height={212} />
+                    <Image src="/f2.png" alt="cover" width={311} height={75} />
                 </div>
 
                 <Link
