@@ -8,7 +8,9 @@
  * 1. not pushed; exists locally only
  * 2. pushed; but not in index; is accissible through url
  * 3. fully public (pushed && in index)
- * ** repo is private so no duplicate content
+ * ** ~~repo is private so no duplicate content~~ its a paid feature; so not private :(
+ * not pushed && in index -> no
+ * pushed && not in index -> no [repo is public so others can see]
  */
 
 // not re-using it; as some items will not be in index; but will be accissible through url
